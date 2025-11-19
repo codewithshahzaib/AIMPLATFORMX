@@ -30,6 +30,49 @@ Additional infrastructure features such as caching intermediate computation resu
 
 Large-scale hyperparameter tuning is supported using distributed training paradigms, systematically exploring vast parameter spaces using techniques like grid search, random search, or Bayesian optimization. This enhances model accuracy, robustness, and generalization capabilities. Automated logging solutions and centralized metadata capture enrich traceability, ease audit requirements, and promote seamless collaboration among teams.
 
+
+### 2.2.1 Step-by-Step Model Training Procedure Using FLANT-5 Base
+
+To provide a concrete example aligned with modern MLOps practices, we outline the step-by-step procedure for training the FLANT-5 Base model—a versatile, large-scale sequence-to-sequence transformer architecture optimized for natural language understanding and generation tasks.
+
+**Step 1: Dataset Preparation and Versioning**
+- Collect and preprocess relevant datasets according to task requirements, ensuring clean, labeled, and balanced data.
+- Apply advanced data versioning tools (e.g., DVC) to track dataset changes and maintain consistency across experiments.
+
+**Step 2: Feature Engineering and Tokenization**
+- Utilize tokenizer compatible with FLANT-5 base architecture to convert raw text into token IDs.
+- Validate tokenization output and ensure alignment with model's vocabulary and input length constraints.
+
+**Step 3: Model Configuration and Initialization**
+- Initialize the FLANT-5 Base model architecture, loading pre-trained weights where appropriate.
+- Configure training hyperparameters such as learning rate, batch size, sequence length, optimizer type, and training epochs.
+
+**Step 4: Distributed Training Setup**
+- Deploy training job onto the multi-GPU infrastructure, leveraging mixed precision capabilities and distributed data parallelism for efficient resource use.
+- Configure Kubernetes or orchestration platform with GPU resource management to accommodate job requirements and scalability.
+
+**Step 5: Training Execution and Monitoring**
+- Begin iterative training cycles, periodically validating model performance on hold-out validation sets.
+- Employ automated logging for loss curves, accuracy metrics, and system resource utilization.
+- Implement periodic checkpointing to enable fault tolerance and recovery.
+
+**Step 6: Hyperparameter Optimization**
+- Optionally, invoke automated hyperparameter tuning frameworks integrated within the MLOps pipeline to refine model parameters for improved generalization.
+
+**Step 7: Model Evaluation and Artifact Storage**
+- Perform comprehensive evaluation on test datasets to assess performance metrics such as BLEU scores, ROUGE, or task-specific benchmarks.
+- Store the trained FLANT-5 Base model artifacts, including weights, configuration files, and evaluation reports, within secure artifact repositories.
+
+**Step 8: CI/CD Integration and Deployment**
+- Integrate model artifacts into CI/CD pipelines for automated deployment workflows.
+- Prepare containerized environments encapsulating the trained model and inference code.
+
+**Step 9: Post-Deployment Monitoring and Retraining**
+- Continuously monitor model inference outputs in production for drift detection and performance degradation.
+- Automate retraining triggers based on monitoring alerts, utilizing the established training pipeline for sustained model freshness.
+
+This detailed, stepwise approach ensures robust, repeatable, and scalable training of the FLANT-5 Base model within modern MLOps frameworks, facilitating seamless collaboration and operational agility.
+
 ### 2.3 CPU-Optimized Inference for SMB Deployments
 
 Although GPUs excel at accelerating training workloads, inference—particularly within production environments optimized for small and medium-sized businesses—often prioritizes cost efficiency, low latency, and minimal resource consumption. Consequently, inference pipelines targeted at SMBs are optimized predominantly for CPU-based environments, which are economically viable and widely accessible.
